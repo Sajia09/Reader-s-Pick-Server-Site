@@ -1,0 +1,15 @@
+[
+    {
+      "name":"Romance",
+      "about":"The romance genre is defined by two aspects that can be found in every romance book or novel: a central love story between characters. "
+    },
+    {
+      "name":"Thriller",
+      "about":"Thrillers generally keep the audience on the edge of their seats as the plot builds towards a climax."
+    },
+    {
+      "name":"Science Fiction",
+      "about":"A form of fiction that deals principally with the impact of actual or imagined science upon society or individuals"
+    }
+    
+]
