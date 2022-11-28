@@ -60,16 +60,28 @@
       "seller":"Sajia"
     },
     {
-      "category":"Science Fiction",
-      "id":"637fd6ddb9533ee1de2224ce",
-      "picture":"https://i.ibb.co/Tv229Nt/book6.jpg",
-      "name":"The War of World",
+      "category":"Romance",
+      "id":"637fd6ddb9533ee1de2224cc",
+      "picture":"https://i.ibb.co/R3WVn4B/book7.jpg",
+      "name":"Ugly Love",
       "location":"Rampura,Dhaka",
-      "originalPrice":"20",
+      "originalPrice":"25",
       "sellingPrice":"10",
-      "yearsOfUse":"1",
+      "yearsOfUse":"3",
       "time":"25 Nov,2022",
-      "seller":"Sajia"
+      "seller":"Tahana"
+    },
+    {
+      "category":"Romance",
+      "id":"637fd6ddb9533ee1de2224cc",
+      "picture":"https://i.ibb.co/6RgyWVp/book8.jpg",
+      "name":"The Shadi Set up",
+      "location":"Dhanmondi,Dhaka",
+      "originalPrice":"24",
+      "sellingPrice":"8",
+      "yearsOfUse":"3",
+      "time":"26 Nov,2022",
+      "seller":"Tahana"
     }
     
     

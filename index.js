@@ -23,6 +23,7 @@ async function run(){
         const categoryCollection = client.db('readerspick').collection('category');
         const booksCollection = client.db('readerspick').collection('books');
         const usersCollection = client.db('readerspick').collection('users');
+        const bookingsCollection = client.db('readerspick').collection('bookings');
 
 
         app.get('/category', async (req, res) => {
@@ -54,6 +55,36 @@ async function run(){
             const result = await usersCollection.insertOne(user);
             res.send(result);
         });
+
+        app.get('/users/admin/:email', async (req, res) => {
+            const email = req.params.email;
+            const query = { email }
+            const user = await usersCollection.findOne(query);
+            res.send({ isAdmin: user?.role === 'admin' });
+        })
+        app.get('/bookings', async (req, res) => {
+            const query = { email: email };
+            const bookings = await bookingsCollection.find(query).toArray();
+            res.send(bookings);
+        });
+        app.post('/bookings', async (req, res) => {
+            const booking = req.body;
+            console.log(booking);
+            const query = {
+                itemName:booking.itemName,
+                email: booking.email,
+            }
+
+            const alreadyBooked = await bookingsCollection.find(query).toArray();
+
+            if (alreadyBooked.length) {
+                const message = `You already booked ${booking.itemName}`
+                return res.send({ acknowledged: false, message })
+            }
+            const result = await bookingsCollection.insertOne(booking);
+            res.send(result);
+        });
+
     }
     finally{
 
