@@ -1,15 +1,76 @@
 [
     {
-      "name":"Romance",
-      "about":"The romance genre is defined by two aspects that can be found in every romance book or novel: a central love story between characters. "
+      "category":"Romance",
+      "id":"637fd6ddb9533ee1de2224cc",
+      "picture": "https://i.ibb.co/PxctH9F/book1.jpg",
+      "name":"It Ends With Us",
+      "location":"Savar,Dhaka",
+      "originalPrice":"14",
+      "sellingPrice":"7",
+      "yearsOfUse":"1",
+      "time":"23 Nov, 2022",
+      "seller":"Sajia"
     },
     {
-      "name":"Thriller",
-      "about":"Thrillers generally keep the audience on the edge of their seats as the plot builds towards a climax."
+      "category":"Romance",
+      "id":"637fd6ddb9533ee1de2224cc",
+      "picture":"https://i.ibb.co/TBxdHm9/book2.jpg",
+      "name":"Five Feet Apart",
+      "location":"Rampura,Dhaka",
+      "originalPrice":"20",
+      "sellingPrice":"10",
+      "yearsOfUse":"2",
+      "time":"25 Nov,2022",
+      "seller":"Tahana"
     },
     {
-      "name":"Science Fiction",
-      "about":"A form of fiction that deals principally with the impact of actual or imagined science upon society or individuals"
+      "category":"Thriller",
+      "id":"637fd6ddb9533ee1de2224cd",
+      "picture":"https://i.ibb.co/YN8M2jn/book3.jpg",
+      "name":"An Angel Fallen",
+      "location":"Jahangirnagar University",
+      "originalPrice":"20",
+      "sellingPrice":"10",
+      "yearsOfUse":"2",
+      "time":"25 Nov,2022",
+      "seller":"Sajia"
+    },
+    {
+      "category":"Thriller",
+      "id":"637fd6ddb9533ee1de2224cd",
+      "picture":"https://i.ibb.co/ZfybsfF/book4.jpg",
+      "name":"Keeper's Of Secrets",
+      "location":"Ramna,Dhaka",
+      "originalPrice":"20",
+      "sellingPrice":"10",
+      "yearsOfUse":"1",
+      "time":"25 Nov,2022",
+      "seller":"Sajia"
+    },
+    {
+      "category":"Science Fiction",
+      "id":"637fd6ddb9533ee1de2224ce",
+      "picture":"https://i.ibb.co/T4pK1T8/book5.jpg",
+      "name":"Giants Of Inequity",
+      "location":"Banashree,Dhaka",
+      "originalPrice":"20",
+      "sellingPrice":"10",
+      "yearsOfUse":"3",
+      "time":"25 Nov,2022",
+      "seller":"Sajia"
+    },
+    {
+      "category":"Science Fiction",
+      "id":"637fd6ddb9533ee1de2224ce",
+      "picture":"https://i.ibb.co/Tv229Nt/book6.jpg",
+      "name":"The War of World",
+      "location":"Rampura,Dhaka",
+      "originalPrice":"20",
+      "sellingPrice":"10",
+      "yearsOfUse":"1",
+      "time":"25 Nov,2022",
+      "seller":"Sajia"
     }
+    
     
 ]
