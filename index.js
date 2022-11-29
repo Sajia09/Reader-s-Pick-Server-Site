@@ -15,7 +15,24 @@ app.use(express.json());
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.hmhhmh5.mongodb.net/?retryWrites=true&w=majority`;
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
 
+function verifyJWT(req, res, next) {
 
+    const authHeader = req.headers.authorization;
+    if (!authHeader) {
+        return res.status(401).send('unauthorized access');
+    }
+
+    const token = authHeader.split(' ')[1];
+
+    jwt.verify(token, process.env.ACCESS_TOKEN, function (err, decoded) {
+        if (err) {
+            return res.status(403).send({ message: 'forbidden access' })
+        }
+        req.decoded = decoded;
+        next();
+    })
+
+}
 
 async function run(){
     try{
@@ -24,7 +41,28 @@ async function run(){
         const booksCollection = client.db('readerspick').collection('books');
         const usersCollection = client.db('readerspick').collection('users');
         const bookingsCollection = client.db('readerspick').collection('bookings');
+        
+        const verifyAdmin = async (req, res, next) => {
+            const decodedEmail = req.decoded.email;
+            const query = { email: decodedEmail };
+            const user = await usersCollection.findOne(query);
 
+            if (user?.role !== 'admin') {
+                return res.status(403).send({ message: 'forbidden access' })
+            }
+            next();
+        }
+
+        app.get('/jwt', async (req, res) => {
+            const email = req.query.email;
+            const query = { email: email };
+            const user = await usersCollection.findOne(query);
+            if (user) {
+                const token = jwt.sign({ email }, process.env.ACCESS_TOKEN)
+                return res.send({ accessToken: token });
+            }
+            res.status(403).send({ accessToken: '' })
+        });
 
         app.get('/category', async (req, res) => {
             const query = {};
@@ -36,6 +74,7 @@ async function run(){
             const allBooks = await booksCollection.find(query).toArray();
             res.send(allBooks);
         })
+        
         app.get('/category/:name', async (req, res) => {
             const pname = req.params.name;
             const filter = {category:pname };
@@ -48,6 +87,18 @@ async function run(){
             const users = await usersCollection.find(query).toArray();
             res.send(users);
         });
+        app.get('/users/:role', async (req, res) => {
+            const prole = req.params.role;
+            const query = {role:prole};
+            const users = await usersCollection.find(query).toArray();
+            res.send(users);
+        });
+        app.delete('/users/:id', verifyJWT, verifyAdmin, async (req, res) => {
+            const id = req.params.id;
+            const filter = { _id: ObjectId(id) };
+            const result = await usersCollection.deleteOne(filter);
+            res.send(result);
+        })
 
         app.post('/users', async (req, res) => {
             const user = req.body;
