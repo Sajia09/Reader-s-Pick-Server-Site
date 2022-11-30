@@ -74,6 +74,12 @@ async function run(){
             const allBooks = await booksCollection.find(query).toArray();
             res.send(allBooks);
         })
+        app.get('/myproducts/:seller', async (req, res) => {
+            const pseller = req.params.seller;
+            const filter = {seller:pseller};
+            const books = await booksCollection.find(filter).toArray();
+            res.send(books);
+        })
         
         app.get('/category/:name', async (req, res) => {
             const pname = req.params.name;
@@ -93,7 +99,7 @@ async function run(){
             const users = await usersCollection.find(query).toArray();
             res.send(users);
         });
-        app.delete('/users/:id', verifyJWT, verifyAdmin, async (req, res) => {
+        app.delete('/users/:role/:id',  async (req, res) => {
             const id = req.params.id;
             const filter = { _id: ObjectId(id) };
             const result = await usersCollection.deleteOne(filter);
@@ -112,6 +118,12 @@ async function run(){
             const query = { email }
             const user = await usersCollection.findOne(query);
             res.send({ isAdmin: user?.role === 'admin' });
+        })
+        app.get('/users/seller/:email', async (req, res) => {
+            const email = req.params.email;
+            const query = { email }
+            const seller = await usersCollection.findOne(query);
+            res.send({ isSeller: seller?.role === 'seller' });
         })
         app.get('/bookings', async (req, res) => {
             const query = { email: email };
